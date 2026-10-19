@@ -1,0 +1,206 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css";
+
+.title-logo {
+  font-family: "Arial Black", "Impact", sans-serif; 
+  font-size: 2.2rem;
+  color: hsl(204, 86%, 53%);
+  font-weight: 900;
+  text-transform: none;
+  
+  /*Sombreado para el efecto de relieve gris*/
+  text-shadow: 3px 3px 0px #e0e0e0; 
+  
+  /*Posicionamiento necesario para que las barras se ubiquen abajo */
+  position: relative;
+  display: inline-block;
+  line-height: 1.1;
+  padding-bottom: 12px; /* Espacio para las barras */
+}
+
+/*Las barras verdes usando un pseudo-elemento */
+.title-logo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px; /*Altura total del bloque de barras */
+  
+  /* Creamos las dos líneas verdes con un degradado lineal */
+ 
+}
+
+.navbar-item {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: hsl(204, 86%, 53%);
+}
+
+.navbar-link {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: hsl(204, 86%, 53%);
+}
+
+.p{
+    font-family: "Arial Black", "Impact", sans-serif;
+}
+
+.image.is-3by1 {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
+/* --- Estilos para el Footer de Consultoria --- */
+
+/* Estilo para el logo del footer (parecido al anterior pero más pequeño) */
+.footer-logo {
+    font-family: "Arial Black", "Impact", sans-serif; 
+    color: hsl(204, 86%, 53%); /* El mismo azul de tu logo */
+    font-weight: 900;
+    text-shadow: 1px 1px 0px #333; /* Sombra sutil para fondo oscuro */
+}
+
+/* Estilos para las listas de enlaces */
+.footer-links ul {
+    list-style: none; /* Quitamos las viñetas */
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem; /* Espacio entre links */
+}
+
+/* Estilos para los enlaces (a) */
+.footer-links a {
+    color: hsl(0, 0%, 86%); /* Gris claro por defecto */
+    text-decoration: none; /* Quitamos el subrayado */
+    transition: color 0.3s ease; /* Transición suave al pasar el mouse */
+    font-size: 0.9rem;
+}
+
+/* Efecto al pasar el mouse (hover) */
+.footer-links a:hover {
+    color: white; /* Se vuelve blanco puro */
+    text-decoration: underline; /* Aparece subrayado */
+}
+
+/* --- Estilos para el Hero/Banner Principal con Overlay Oscuro --- */
+
+/* 1. Set de la imagen de fondo en el container principal */
+.hero-custom-bg {
+    background-image: url('../../imagenes/portada-hospital.jpg'); /* Asegúrate de que la ruta sea correcta */
+    background-size: cover; /* La imagen cubre todo el espacio */
+    background-position: center; /* La imagen se centra */
+    position: relative; /* Indispensable para que la capa oscura (overlay) se posicione bien */
+}
+
+/* 2. Creamos la capa oscura (Overlay) usando un pseudo-elemento (::before) */
+/* Esto crea una "caja" invisible que solo existe en CSS */
+.hero-custom-bg::before {
+    content: ""; /* Contenido vacío */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Capa negra con un 65% de opacidad (0.65). Auméntalo para que sea más oscura (ej. 0.8) */
+    background-color: rgba(0, 0, 0, 0.65); 
+    z-index: 1; /* Posiciona la capa oscura por ENCIMA de la imagen */
+}
+
+/* 3. Aseguramos que el contenido (texto) esté por ENCIMA de la capa oscura */
+.hero-custom-bg .hero-body {
+    position: relative; /* Indispensable para que el z-index funcione */
+    z-index: 2; /* Posiciona el texto (z-index 2) sobre la capa oscura (z-index 1) */
+}
+
+/* 4. Estilo de texto agresivo y bold para que resalte */
+.hero-main-title {
+    font-family: "Arial Black", "Impact", sans-serif; /* Fuente bold y 'sans-serif' */
+    color: white !important; /* Fuerza a que sea blanco */
+    font-weight: 900; /* Peso de fuente muy grueso */
+    text-transform: uppercase; /* Todo en mayúsculas */
+    letter-spacing: 1px; /* Espaciado entre letras sutil */
+}
+
+/* --- Estilos para la sección de Pasos --- */
+
+/* 1. La línea azul debajo del título */
+.section-title-line {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px;
+  color: #0072b1 !important; /* El color azul de tus imágenes */
+  font-weight: bold;
+}
+
+
+/* This is for the section title line */
+.section-title-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%; /* Largo de la línea */
+  height: 3px; /* Grosor de la línea */
+  background-color: #0072b1;
+}
+
+/* 2. Contenedor de cada paso */
+.paso-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+/* 3. El número gigante gris de fondo */
+.paso-numero {
+  position: absolute;
+  left: 15%; /* Lo empujamos un poco a la izquierda */
+  font-size: 8rem; /* Tamaño gigante */
+  font-weight: 900;
+  color: #e8ecef; /* Gris muy clarito */
+  font-family: "Arial Black", "Impact", sans-serif;
+  z-index: 0; /* Lo mandamos al fondo */
+  line-height: 1;
+}
+
+/* 4. El contenido (Icono + Texto) que va por encima */
+.paso-contenido {
+  position: relative;
+  z-index: 1; /* Lo traemos al frente para que tape un poco al número */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- MAGIA PARA CELULARES (Responsive) --- */
+/* Esto le dice a la página: "Si la pantalla es de celular, cambia esto" */
+@media (max-width: 768px) {
+  .paso-numero {
+    left: 0; /* Pegamos el número totalmente a la izquierda de la pantalla */
+    font-size: 7rem; /* Lo hacemos un pelín más pequeño para que no estorbe */
+  }
+}
+
+
+
+/* Solo afecta a pantallas de tablet para abajo (menú móvil de Bulma) */
+@media (max-width: 1023px) {
+  /* 1. Escondemos las opciones por defecto */
+  #dropdown-mas .navbar-dropdown {
+    display: none;
+  }
+  
+  /* 2. Las mostramos SOLO cuando JavaScript le agregue esta clase especial */
+  #dropdown-mas.is-open-mobile .navbar-dropdown {
+    display: block;
+  }
+}
