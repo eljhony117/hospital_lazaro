@@ -5,6 +5,8 @@ $mensaje = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST['nombre_usuario'];
     $email = $_POST['correo'];
+    $apellidos = $_POST['apellidos'];
+    $fecha_nac = $_POST['fecha_nacimiento'];
     // Encriptación segura de la contraseña
     $pass = password_hash($_POST['password'], PASSWORD_DEFAULT); 
 
@@ -22,10 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 3. Crear el perfil del paciente vinculado a ese usuario
         // Nota: Como 'apellidos' es obligatorio en la BD, lo enviamos vacío por ahora 
         // hasta que agregues ese campo a tu formulario HTML
-        $sql_paciente = "INSERT INTO pacientes (usuario_id, nombre, apellidos) VALUES (:id, :nombre, '')";
+        $sql_paciente = "INSERT INTO pacientes (usuario_id, nombre, apellidos, fecha_nacimiento) VALUES (:id, :nombre, :apellidos, :fecha)";
         $stmt_paciente = $conn->prepare($sql_paciente);
         $stmt_paciente->bindParam(':id', $id_usuario);
         $stmt_paciente->bindParam(':nombre', $user);
+        $stmt_paciente->bindParam(':apellidos', $apellidos);
+        $stmt_paciente->bindParam(':fecha', $fecha_nac);
         $stmt_paciente->execute();
         
         $mensaje = "Registro exitoso. Puedes iniciar sesión.";
@@ -59,9 +63,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <form method="POST" action="">
                             <!-- Estructura de campos nativa de Bulma -->
                             <div class="field">
-                                <label class="label">Usuario:</label>
+                                <label class="label">Nombre(s):</label>
                                 <div class="control">
                                     <input class="input" type="text" name="nombre_usuario" required>
+                                </div>
+                            </div>
+
+                            <!-- Agrega estos dos nuevos campos -->
+                            <div class="field">
+                                <label class="label">Apellidos:</label>
+                                <div class="control">
+                                    <input class="input" type="text" name="apellidos" required>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Fecha de Nacimiento:</label>
+                                <div class="control">
+                                    <input class="input" type="date" name="fecha_nacimiento" required>
                                 </div>
                             </div>
                             
@@ -78,7 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <input class="input" type="password" name="password" placeholder="********" required>
                                 </div>
                             </div>
-                            
+                            <h1 class="is-size-6 has-text-centered"> ¿Ya tienes una cuenta? <a href="login.php">Inicia Sesion</a></h1>
+
                             <div class="field mt-5">
                                 <div class="control">
                                     <button class="button is-primary is-fullwidth" type="submit">Registrarse</button>
